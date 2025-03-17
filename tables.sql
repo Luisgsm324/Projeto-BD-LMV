@@ -5,9 +5,9 @@ CREATE TABLE funcionarios (
     funcao VARCHAR(40),
     email VARCHAR(254),
     idloja INT,
-    idempresaserv INT,
+    id_empresa_terceira VARCHAR(14),
     FOREIGN KEY (idloja) REFERENCES lojas(id),
-    FOREIGN KEY (idempresaserv) REFERENCES empresas_prestadoras_servico(id_empresa_terceira)
+    FOREIGN KEY (id_empresa_terceira) REFERENCES empresas_prestadoras_servico(id_empresa_terceira)
 );
 
 CREATE TABLE veiculos (
