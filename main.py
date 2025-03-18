@@ -2,6 +2,7 @@ import mysql.connector
 
 def connect_to_database():
     try:
+        # Informações para realizar conexão com o banco de dados
         connection = mysql.connector.connect(
             host='localhost',
             user='root',
@@ -28,17 +29,23 @@ def execute_query(connection, query):
     finally:
         cursor.close()
 
+
 def main():
     connection = connect_to_database()
-    if connection:
-        queries = [
-            "SELECT * FROM your_table1;",
-            "SELECT * FROM your_table2;",
-            # Add more queries as needed
-        ]
-        for query in queries:
+    while True:
+        text = """-------------------------------------------
+Insira a query desejada para executar: (Para sair, digite 5)
+-------------------------------------------"""
+        print(text)
+        query = input()
+        
+        if query == '5':
+            break
+
+        if connection:
+            print("-------------------------------------------\nResultado da query:\n-------------------------------------------")
             execute_query(connection, query)
-        connection.close()
+            connection.close()
 
 if __name__ == "__main__":
     main()
