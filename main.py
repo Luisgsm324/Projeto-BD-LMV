@@ -9,7 +9,7 @@ def exibir_tabela(colunas, conteudo):
         tabela.delete(row)
 
     tabela["columns"] = colunas
-    tabela.column("#0", width=50, anchor="center")
+    tabela.column("#0", width=0, stretch=tk.NO)
 
     for coluna in colunas:
         tabela.heading(coluna, text=coluna)
@@ -32,7 +32,11 @@ def call_query():
     print(f"Colunas: {columns}")
     print(f"Colunas formatadas: {formated_columns}")
     print(f"Conteúdo: {content}")
-    exibir_tabela(formated_columns, content)
+
+    if len(content) > 0:
+        exibir_tabela(formated_columns, content)
+    else:
+        messagebox.showerror("Aviso", "Nenhum resultado foi encontrado com essa query :(")
 
 connection = connect_to_database()
 
